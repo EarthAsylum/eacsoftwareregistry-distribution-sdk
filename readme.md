@@ -1,9 +1,9 @@
-# {eac}SoftwareRegistry Distribution SDK  
+## {eac}SoftwareRegistry Distribution SDK  
 [![EarthAsylum Consulting](https://img.shields.io/badge/EarthAsylum-Consulting-0?&labelColor=6e9882&color=707070)](https://earthasylum.com/)
 [![WordPress](https://img.shields.io/badge/WordPress-Plugins-grey?logo=wordpress&labelColor=blue)](https://wordpress.org/plugins/search/EarthAsylum/)
-[![eacDoojigger](https://img.shields.io/badge/Requires-{eac}Doojigger-da821d)](https://eacDoojigger.earthasylum.com/)
+[![eacDoojigger](https://img.shields.io/badge/Requires-%7Beac%7DDoojigger-da821d)](https://eacDoojigger.earthasylum.com/)
 
-<details><summary>Plugin Header</summary><samp>
+<details><summary>Plugin Header</summary>
 
 Plugin URI:         https://swregistry.earthasylum.com/software-registry-sdk/  
 Author:             [EarthAsylum Consulting](https://www.earthasylum.com)  
@@ -18,11 +18,12 @@ License URI:        https://www.gnu.org/licenses/gpl.html
 Tags:               software registration, software registry, software license, license manager, registration API, registration SDK, {eac}SoftwareRegistry  
 WordPress URI:      https://wordpress.org/plugins/eacsoftwareregistry-distribution-sdk  
 Github URI:         https://github.com/EarthAsylum/eacsoftwareregistry-distribution-sdk  
-</samp></details>
 
-**_{eac}SoftwareRegistry Distribution SDK for the Software Registration Server - Implementing the Software Registry SDK Package._**
+</details>
 
-## Description
+> {eac}SoftwareRegistry Distribution SDK for the Software Registration Server - Implementing the Software Registry SDK Package.
+
+### Description
 
 **{eac}SoftwareRegistry Distribution SDK** is an extension plugin to [{eac}SoftwareRegistry Software Registration Server](https://swregistry.earthasylum.com/software-registration-server/).
 
@@ -34,18 +35,18 @@ The SDK provides most of the PHP code you will need to implement the Application
 
 Included with the Software Registration SDK package...
 
-+   (your_productid)_registration.(wordpress_or_filebased).trait.php
-+   (your_productid)_registration.includes.php
-+   (your_productid)_registration.interface.php
-+   (your_productid)_registration.interface.trait.php
-+   (your_productid)_registration.refresh.php
++   `(your_productid)_registration.(wordpress_or_filebased).trait.php`
++   `(your_productid)_registration.includes.php`
++   `(your_productid)_registration.interface.php`
++   `(your_productid)_registration.interface.trait.php`
++   `(your_productid)_registration.refresh.php`
 
 
 #### Software Registry Implementation
 
 After extracting the `(your_productid)_registration.zip` file, move the `(your_productid)_registration` folder to your project.
 
-In your project or class file, include '(your_productid)_registration/(your_productid)_registration.includes.php' to load the required interface and traits.
+In your project or class file, include `(your_productid)_registration/(your_productid)_registration.includes.php` to load the required interface and traits.
 
 Your class file must then:
 
@@ -327,7 +328,7 @@ Example:
 
 **For Other File Based Projects**
 
-The `scheduleRegistryRefresh()` method in (your_productid)_registration.filebased.trait.php is called to schedule the next registration refresh. This method can be modified to schedule a cron event to execute the refresh at a future time. The scheduled event may run `(your_productid)_registration.refresh.php <registrationKeyValue>` from the command line to refresh the registration.
+The `scheduleRegistryRefresh()` method in `(your_productid)_registration.filebased.trait.php` is called to schedule the next registration refresh. This method can be modified to schedule a cron event to execute the refresh at a future time. The scheduled event may run `(your_productid)_registration.refresh.php <registrationKeyValue>` from the command line to refresh the registration.
 
 When left as is, the `checkRegistryRefreshEvent()` method uses the key file to check for a needed registration refresh.
 
@@ -365,7 +366,7 @@ see:
 +   .../Extensions/class.eacSoftwareRegistry_registration.extension.php in the eacSoftwareRegistry folder.
 
 
-## Installation
+### Installation
 
 **{eac}SoftwareRegistry Distribution SDK** is an extension plugin to and requires installation and registration of [{eac}SoftwareRegistry](https://swregistry.earthasylum.com/).*
 
@@ -392,7 +393,7 @@ See [Managing Plugins -> Manual Plugin Installation](https://wordpress.org/suppo
 Options for this extension will be added to the *Software Registry » Settings » Distribution* tab.
 
 
-## Screenshots
+### Screenshots
 
 1. {eac}SoftwareRegistry Distribution
 ![{eac}SoftwareRegistry Distribution](https://ps.w.org/eacsoftwareregistry-distribution-sdk/assets/screenshot-1.png)
@@ -404,7 +405,7 @@ Options for this extension will be added to the *Software Registry » Settings �
 ![Software Registration](https://ps.w.org/eacsoftwareregistry-distribution-sdk/assets/screenshot-3.png)
 
 
-## Other Notes
+### Other Notes
 
 #### See Also
 

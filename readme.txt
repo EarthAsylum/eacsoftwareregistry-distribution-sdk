@@ -27,18 +27,18 @@ The SDK provides most of the PHP code you will need to implement the Application
 
 Included with the Software Registration SDK package...
 
-+   (your_productid)_registration.(wordpress_or_filebased).trait.php
-+   (your_productid)_registration.includes.php
-+   (your_productid)_registration.interface.php
-+   (your_productid)_registration.interface.trait.php
-+   (your_productid)_registration.refresh.php
++   `(your_productid)_registration.(wordpress_or_filebased).trait.php`
++   `(your_productid)_registration.includes.php`
++   `(your_productid)_registration.interface.php`
++   `(your_productid)_registration.interface.trait.php`
++   `(your_productid)_registration.refresh.php`
 
 
 = Software Registry Implementation =
 
 After extracting the `(your_productid)_registration.zip` file, move the `(your_productid)_registration` folder to your project.
 
-In your project or class file, include '(your_productid)_registration/(your_productid)_registration.includes.php' to load the required interface and traits.
+In your project or class file, include `(your_productid)_registration/(your_productid)_registration.includes.php` to load the required interface and traits.
 
 Your class file must then:
 
@@ -320,7 +320,7 @@ Example:
 
 **For Other File Based Projects**
 
-The `scheduleRegistryRefresh()` method in (your_productid)_registration.filebased.trait.php is called to schedule the next registration refresh. This method can be modified to schedule a cron event to execute the refresh at a future time. The scheduled event may run `(your_productid)_registration.refresh.php <registrationKeyValue>` from the command line to refresh the registration.
+The `scheduleRegistryRefresh()` method in `(your_productid)_registration.filebased.trait.php` is called to schedule the next registration refresh. This method can be modified to schedule a cron event to execute the refresh at a future time. The scheduled event may run `(your_productid)_registration.refresh.php <registrationKeyValue>` from the command line to refresh the registration.
 
 When left as is, the `checkRegistryRefreshEvent()` method uses the key file to check for a needed registration refresh.
 
