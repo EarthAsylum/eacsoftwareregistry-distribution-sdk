@@ -10,7 +10,7 @@ Author:             [EarthAsylum Consulting](https://www.earthasylum.com)
 Stable tag:         1.0.9  
 Last Updated:       08-Jun-2023  
 Requires at least:  5.5.0  
-Tested up to:       6.4  
+Tested up to:       6.5  
 Requires PHP:       7.2  
 Contributors:       [kevinburkholder](https://profiles.wordpress.org/kevinburkholder)  
 License:            GPLv3 or later  

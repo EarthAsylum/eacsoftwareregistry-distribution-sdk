@@ -14,7 +14,7 @@
  * Description:	        Software Registration Server Distribution SDK - generate custom PHP packages that can be include in your project to register your product with your registration server.
  * Version:	            1.0.9
  * Requires at least:   5.5.0
- * Tested up to:        6.4
+ * Tested up to:        6.5
  * Requires PHP:        7.2
  * Plugin URI:        	https://swregistry.earthasylum.com/software-registry-sdk/
  * Author:				EarthAsylum Consulting
