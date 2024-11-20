@@ -5,16 +5,15 @@
  * @category	WordPress Plugin
  * @package		{eac}SoftwareRegistry Distribution SDK
  * @author		Kevin Burkholder <KBurkholder@EarthAsylum.com>
- * @copyright	Copyright (c) 2023 EarthAsylum Consulting <www.earthasylum.com>
- * @version		1.x
+ * @copyright	Copyright (c) 2024 EarthAsylum Consulting <www.earthasylum.com>
  * @uses		{eac}SoftwareRegistry
  *
  * @wordpress-plugin
  * Plugin Name:	        {eac}SoftwareRegistry Distribution SDK
  * Description:	        Software Registration Server Distribution SDK - generate custom PHP packages that can be include in your project to register your product with your registration server.
- * Version:	            1.0.9
+ * Version:	            1.1.0
  * Requires at least:   5.8
- * Tested up to:        6.6
+ * Tested up to:        6.7
  * Requires PHP:        7.4
  * Plugin URI:        	https://swregistry.earthasylum.com/software-registry-sdk/
  * Author:				EarthAsylum Consulting

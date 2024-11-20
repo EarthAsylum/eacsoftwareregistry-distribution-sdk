@@ -7,8 +7,7 @@ namespace EarthAsylumConsulting\Extensions;
  * @category	WordPress Plugin
  * @package		{eac}SoftwareRegistry
  * @author		Kevin Burkholder <KBurkholder@EarthAsylum.com>
- * @copyright	Copyright (c) 2023 EarthAsylum Consulting <www.earthasylum.com>
- * @version		1.x
+ * @copyright	Copyright (c) 2024 EarthAsylum Consulting <www.earthasylum.com>
  */
 
 class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstract_extension
@@ -21,7 +20,7 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 	/**
 	 * @var string extension version
 	 */
-	const VERSION	= '23.0608.1';
+	const VERSION	= '24.1120.1';
 
 
 	/**
@@ -51,8 +50,10 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 	 */
 	public function admin_options_settings()
 	{
+		global $wp_filesystem;
+		$fs = apply_filters('eacDoojigger_load_filesystem',$wp_filesystem,true,'WordPress file access is required to create SoftwareRegistry SDK packages.');
 		$root = EAC_SOFTWARE_REGISTRY_SDK.'/SDK/distributions';
-		if (is_dir($root) && is_writable($root))
+		if ($fs && $fs->is_dir($root) && $fs->is_writable($root))
 		{
 			$this->registerExtensionOptions( ['Create Registration Package', 'distribution' ],
 				[
@@ -160,6 +161,9 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 	 */
 	public function form_request_create_distribution($value, $fieldName, $metaData, $priorValue)
 	{
+		global $wp_filesystem;
+		if (! ($fs = apply_filters('eacDoojigger_load_filesystem',$wp_filesystem)) ) return;
+
 		$productName 	= $this->plugin->_POST('_distribute_product');
 		$productType 	= ($this->plugin->_POST('_distribute_type') == 'WordPress') ? 'wordpress' : 'filebased';
 		$namespace 		= $this->plugin->_POST('_distribute_namespace');
@@ -172,16 +176,17 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 		$traitName 		= $baseName;
 		$traitName 		.= ($productType == 'wordpress') ? '_wordpress' : '_filebased';
 
-		if (is_dir($root.'/PHP') && is_file($root.'/PHP/softwareregistry.interface.tpl'))
+		if ($fs->is_dir($root.'/PHP') && $fs->is_file($root.'/PHP/softwareregistry.interface.tpl'))
 		{
-			if ( ! is_dir( $dirName ) )
+			if ( ! $fs->is_dir( $dirName ) )
 			{
-				mkdir($dirName,0775);
-				chmod($dirName,0775);
+				$fs->mkdir($dirName,0775);
 			}
+			$fs->touch($dirName.'.zip');
+
 			// readme.txt
 			$fileName = $dirName."/{$baseName}.readme.txt";
-			$contents = file_get_contents(EAC_SOFTWARE_REGISTRY_SDK.'/readme.txt');
+			$contents = $fs->get_contents(EAC_SOFTWARE_REGISTRY_SDK.'/readme.txt');
 			$contents = str_replace(
 				[
 					'(your_productid)',
@@ -195,13 +200,13 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 				],
 				$contents
 			);
-			file_put_contents($fileName, $contents);
+			$fs->put_contents($fileName, $contents);
 
 			$namespace = ltrim($namespace,'\\');
 
 			// softwareregistry.interface.php
 			$fileName = $dirName."/{$baseName}.interface.php";
-			$contents = file_get_contents($root.'/PHP/softwareregistry.interface.tpl');
+			$contents = $fs->get_contents($root.'/PHP/softwareregistry.interface.tpl');
 			$contents = str_replace(
 				[
 					'softwareregistry',
@@ -223,11 +228,11 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 				],
 				$contents
 			);
-			file_put_contents($fileName, $contents);
+			$fs->put_contents($fileName, $contents);
 
 			// softwareregistry.interface.trait.php
 			$fileName = $dirName."/{$baseName}.interface.trait.php";
-			$contents = file_get_contents($root.'/PHP/softwareregistry.interface.trait.tpl');
+			$contents = $fs->get_contents($root.'/PHP/softwareregistry.interface.trait.tpl');
 			$contents = str_replace(
 				[
 					'softwareregistry',
@@ -239,11 +244,11 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 				],
 				$contents
 			);
-			file_put_contents($fileName, $contents);
+			$fs->put_contents($fileName, $contents);
 
 			// softwareregistry.{$productType}.trait.php
 			$fileName = $dirName."/{$baseName}.{$productType}.trait.php";
-			$contents = file_get_contents($root."/PHP/softwareregistry.{$productType}.trait.tpl");
+			$contents = $fs->get_contents($root."/PHP/softwareregistry.{$productType}.trait.tpl");
 			$contents = str_replace(
 				[
 					'softwareregistry',
@@ -257,11 +262,11 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 				],
 				$contents
 			);
-			file_put_contents($fileName, $contents);
+			$fs->put_contents($fileName, $contents);
 
 			// softwareregistry.includes.php
 			$fileName = $dirName."/{$baseName}.includes.php";
-			$contents = file_get_contents($root.'/PHP/softwareregistry.includes.tpl');
+			$contents = $fs->get_contents($root.'/PHP/softwareregistry.includes.tpl');
 			$contents = str_replace(
 				[
 					'softwareregistry',
@@ -275,11 +280,11 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 				],
 				$contents
 			);
-			file_put_contents($fileName, $contents);
+			$fs->put_contents($fileName, $contents);
 
-			// RegistrationRefresh.php
+			// softwareregistry.refresh.php
 			$fileName = $dirName."/{$baseName}.refresh.php";
-			$contents = file_get_contents($root.'/PHP/softwareregistry.refresh.tpl');
+			$contents = $fs->get_contents($root.'/PHP/softwareregistry.refresh.tpl');
 			$contents = str_replace(
 				[
 					'softwareregistry',
@@ -295,10 +300,14 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 				],
 				$contents
 			);
-			file_put_contents($fileName, $contents);
+			$fs->put_contents($fileName, $contents);
 
+			// create zip
 			if ($this->zip_archive_create($dirName,$dirName.'.zip',true)) {
-				rmdir($dirName);
+				$fs->rmdir($dirName);
+				$this->plugin->add_admin_notice('Created '.basename($dirName.'.zip'),'success');
+			} else {
+				$this->plugin->add_admin_notice('Zip Archive failed to create '.basename($dirName.'.zip'),'error');
 			}
 
 			echo "<script>window.location.reload()</script>";

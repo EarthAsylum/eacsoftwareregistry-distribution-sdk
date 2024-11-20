@@ -7,10 +7,10 @@
 
 Plugin URI:         https://swregistry.earthasylum.com/software-registry-sdk/  
 Author:             [EarthAsylum Consulting](https://www.earthasylum.com)  
-Stable tag:         1.0.9  
-Last Updated:       08-Jun-2023  
+Stable tag:         1.1.0  
+Last Updated:       20-Nov-2024  
 Requires at least:  5.8  
-Tested up to:       6.6  
+Tested up to:       6.7  
 Requires PHP:       7.4  
 Contributors:       [kevinburkholder](https://profiles.wordpress.org/kevinburkholder)  
 License:            GPLv3 or later  
@@ -90,7 +90,7 @@ API parameters are passed as an array:
         'registry_title'        => 'Product Title',                 //   your product title
         'registry_description'  => 'Product Description',           //   your product description
         'registry_version'      => 'M.m.p',                         //   your product version
-        'registry_license'      => 'Lx',                            //   'L1'(Lite), 'L2'(Basic), 'L3'(Standard), 'L4'(Professional), 'L5'(Enterprise), 'LD'(Developer)
+        'registry_license'      => 'Lx',                            //   'L1'(Lite), 'L2'(Basic), 'L3'(Standard), 'L4'(Professional), 'L5'(Enterprise), 'LD'(Developer), 'LU'(Unlimited)
         'registry_count'        => int,                             //   Number of licenses (users/seats/devices)
         'registry_variations'   => array('name'=>'value',...),      //   array of name/value pairs
         'registry_options'      => array('value',...),              //   array of registry options
@@ -213,12 +213,15 @@ The API response is a standard object. status->code is an http status, 200 indic
         'message'               -> string,          // html message
     ),
     registryHtml                -> string,          // html (table) of human-readable registration values
+    supplemental                -> mixed,           // supplemental data/html assigned via filters (developer's discretion).
 
 On a successful response (status->code = 200), the SDK will automatically cache the registration data and schedule the next refresh event (you do not have to do this).
 
 _notices_ may be set (according to severity) to indicate an expiration or pending expiration and should be displayed to the user. Typically, only one notice will be set but they can be set via the `eacSoftwareRegistry_api_registration_notices` filter.
 
 _message_ is set via the `eacSoftwareRegistry_api_registration_message` filter.
+
+_supplemental_ is set via the `eacSoftwareRegistry_api_registration_supplemental` filter.
 
 On an error response, an additional element is included:
 
