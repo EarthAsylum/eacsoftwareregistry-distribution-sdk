@@ -1,8 +1,8 @@
 === {eac}SoftwareRegistry Distribution SDK ===
 Plugin URI:         https://swregistry.earthasylum.com/software-registry-sdk/
 Author:             [EarthAsylum Consulting](https://www.earthasylum.com)
-Stable tag:         1.1.0
-Last Updated:       20-Nov-2024
+Stable tag:         1.1.1
+Last Updated:       23-Nov-2024
 Requires at least:  5.8
 Tested up to:       6.7
 Requires PHP:       7.4
@@ -421,6 +421,10 @@ You should receive a copy of the GNU General Public License along with this prog
 
 
 == Changelog ==
+
+= Version 1.1.1 – November 23, 2024 =
+
++   Fix bug when creating zip file.
 
 = Version 1.1.0 – November 20, 2024 =
 

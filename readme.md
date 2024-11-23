@@ -7,8 +7,8 @@
 
 Plugin URI:         https://swregistry.earthasylum.com/software-registry-sdk/  
 Author:             [EarthAsylum Consulting](https://www.earthasylum.com)  
-Stable tag:         1.1.0  
-Last Updated:       20-Nov-2024  
+Stable tag:         1.1.1  
+Last Updated:       23-Nov-2024  
 Requires at least:  5.8  
 Tested up to:       6.7  
 Requires PHP:       7.4  

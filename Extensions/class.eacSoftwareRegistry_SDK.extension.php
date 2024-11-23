@@ -20,7 +20,7 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 	/**
 	 * @var string extension version
 	 */
-	const VERSION	= '24.1120.1';
+	const VERSION	= '24.1123.1';
 
 
 	/**
@@ -55,6 +55,8 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 		$root = EAC_SOFTWARE_REGISTRY_SDK.'/SDK/distributions';
 		if ($fs && $fs->is_dir($root) && $fs->is_writable($root))
 		{
+			// make sure directory is writeable w/out fs (user & group permission)
+			$fs->chmod($root,FS_CHMOD_DIR|0660);
 			$this->registerExtensionOptions( ['Create Registration Package', 'distribution' ],
 				[
 					'_distribute_display'	=> array(
@@ -182,7 +184,6 @@ class eacSoftwareRegistry_distribution_SDK extends \EarthAsylumConsulting\abstra
 			{
 				$fs->mkdir($dirName,0775);
 			}
-			$fs->touch($dirName.'.zip');
 
 			// readme.txt
 			$fileName = $dirName."/{$baseName}.readme.txt";
